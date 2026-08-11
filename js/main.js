@@ -49,10 +49,11 @@ window.addEventListener('resize', () => {
 	}
 })
 
-// ТЕЛЕГРАМ ФОРМА - ИСПРАВЛЕННАЯ ВЕРСИЯ
+// Telegram form — tokens must NOT be committed.
+// Set locally only (e.g. replace before private deploy), or proxy via a backend.
 const TELEGRAM_CONFIG = {
-	BOT_TOKEN: '8330878709:AAHQh9fnqbMHz86BfKmzULXc0MaWdpAhFYI',
-	CHAT_ID: '8330878709', // Пока оставляем так, но нужно найти правильный
+	BOT_TOKEN: '', // revoked from public repo — set locally, never commit
+	CHAT_ID: '',
 }
 
 // Функция для поиска правильного Chat ID
@@ -76,6 +77,11 @@ async function findChatId() {
 
 // Основная функция отправки
 async function sendToTelegram(formData) {
+	if (!TELEGRAM_CONFIG.BOT_TOKEN || !TELEGRAM_CONFIG.CHAT_ID) {
+		console.error('Telegram bot token/chat id not configured')
+		return false
+	}
+
 	// Сначала пробуем найти правильный Chat ID
 	const correctChatId = await findChatId()
 	const chatIdToUse = correctChatId || TELEGRAM_CONFIG.CHAT_ID
