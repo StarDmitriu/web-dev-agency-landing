@@ -1,8 +1,17 @@
 # Web Dev Agency Landing
 
-Personal/agency-style landing with a contact form.
-
-> Telegram bot credentials were removed from the public repo. Do not commit bot tokens in frontend code.
+Personal / agency-style landing with a short pitch and a contact form for inbound requests.
 
 ## Stack
-HTML / CSS / JavaScript
+
+- HTML
+- CSS
+- JavaScript
+
+## Run locally
+
+Open `index.html`, or:
+
+```bash
+npx serve .
+```
